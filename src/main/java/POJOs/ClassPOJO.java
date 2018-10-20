@@ -4,7 +4,9 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.stmt.Statement;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ClassPOJO {
 
@@ -17,6 +19,15 @@ public class ClassPOJO {
     private boolean hasTempField;
     private List<FieldDeclaration> fieldDeclarations;
     private List<VariableDeclarator> variableDeclarators;
+   private Set<String> tempField;
+
+    public Set<String> getTempField() {
+        return tempField;
+    }
+
+    public void setTempField(Set<String> tempField) {
+        this.tempField = tempField;
+    }
 
     public List<VariableDeclarator> getAllVariables() {
         return allVariables;

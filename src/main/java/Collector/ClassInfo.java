@@ -4,9 +4,7 @@ import Controller.*;
 import POJOs.ClassPOJO;
 import POJOs.MethodPOJO;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
-import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import java.util.ArrayList;
@@ -34,10 +32,12 @@ public class ClassInfo extends VoidVisitorAdapter<List<ClassPOJO>> {
 
  //   cPojo.setVariableDeclarators();
 
+
     cPojo = new PrimitiveTypeDetection().PrimitiveDetection(cPojo);
     cPojo = new DataClassDetection().DataClassDetection(cPojo);
   //  cPojo = new TemporaryFieldDetection().TemporaryFieldDetection(cPojo);
-    cPojo = new TemporaryFieldDetector().TemporaryFieldDetector(cPojo);
+  //  cPojo = new GlobalVariableDetection().GlobalVariableDetection(cPojo);
+    cPojo = new Temporary().Temporary(cPojo);
 
     list.add(cPojo);
 

@@ -9,9 +9,9 @@ import com.google.errorprone.annotations.Var;
 
 import java.util.*;
 
-public class TemporaryFieldDetector {
+public class GlobalVariableDetection {
 //TESTING THIS CLASS BC ITS FULL OF SHIT. OTHER CLASS DETECTS STUFF BUT THIS DOESNT
-    public ClassPOJO TemporaryFieldDetector(ClassPOJO info) {
+    public ClassPOJO GlobalVariableDetection(ClassPOJO info) {
 
 
 //        Set<VariableDeclarator> isTempField = new HashSet<>();
@@ -60,11 +60,11 @@ public class TemporaryFieldDetector {
 
 
             if(tempVar.size()>0){
-                System.out.println("TEMP TEMP");
-                methods.setHasTempVar(true);
+                System.out.println("GLOBAL VARIABLE");
+                methods.setGlobalVariable(true);
             }
 
-            System.out.println(tempVar + "TEMP VAR");
+            System.out.println(tempVar + "GLOBAL VARIABLE ARRAY");
 
         }
 

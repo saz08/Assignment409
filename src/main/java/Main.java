@@ -1,4 +1,5 @@
 import Collector.ClassInfo;
+import Controller.Temporary;
 import POJOs.ClassPOJO;
 import POJOs.MethodPOJO;
 import com.github.javaparser.JavaParser;
@@ -30,8 +31,12 @@ public class Main {
             if(info.isDataClass()==true){
                 System.out.println("This is a data class");
             }
-            if(info.isHasTempField()==true){
-                System.out.println("This class has temporary fields");
+//            if(info.isHasTempField()==true){
+//                System.out.println("This class has temporary fields");
+//                System.out.println("Temporary fields are : " );
+//            }
+            if(info.getTempField().size()>0){
+                System.out.println("This class has temporary fields of : " + info.getTempField());
             }
 
             if(info.getAllVariables().size()>0) {
@@ -39,7 +44,7 @@ public class Main {
                     System.out.println("CLASS PRIM OBSESSION");
                 }
             }
-            System.out.println("Primitive types in this class " + info.getVariableDeclarators()+"\n") ;
+            System.out.println("Primitive types in this class are : " + info.getVariableDeclarators()+"\n") ;
 
 
             for(MethodPOJO mPojo : info.getMethods()){
@@ -53,29 +58,26 @@ public class Main {
                     System.out.println("The parameter list for this method is too long");
                 }
 
-                if(mPojo.getParameters().size()>0){
-                    System.out.println("This method has primitive types as parameters : " + mPojo.getParameters());
-                }
+//                if(mPojo.getParameters().size()>0){
+//                    System.out.println("This method has primitive types as parameters : " + mPojo.getParameters());
+//                }
 
                 if(mPojo.getAllParams().size()>0) {
                     if ((mPojo.getParameters().size()) / (mPojo.getAllParams().size()) > 0.6) {
-                        System.out.println("PARAMETER PRIMITIVE OBSESSION");
-                    }
-                }
-
-                if(mPojo.getMethodVariable().size()>0){
-                    System.out.println("This method has primitive types : " + mPojo.getMethodVariable());
-                }
-
-                if(mPojo.getAllMethodVars().size()>0) {
-                    if ((mPojo.getMethodVariable().size()) / (mPojo.getAllMethodVars().size()) > 0.6) {
-                        System.out.println("METHOD PRIMITIVE OBSESSION");
+                        System.out.println("This method has primitive obsession in parameters : " + mPojo.getParameters());
                     }
                 }
 
 //                if(mPojo.getMethodVariable().size()>0){
-//                    System.out.println("This method contains primitive types : " + mPojo.getMethodVariable());
+//                    System.out.println("This method has primitive types : " + mPojo.getMethodVariable());
 //                }
+
+                if(mPojo.getAllMethodVars().size()>0) {
+                    if ((mPojo.getMethodVariable().size()) / (mPojo.getAllMethodVars().size()) > 0.6) {
+                        System.out.println("This method has primitive obsession with : " +mPojo.getMethodVariable());
+                    }
+                }
+
 
                 if(mPojo.isSwitchStmt()==true){
                     System.out.println("This method has a switch statement");
@@ -85,9 +87,15 @@ public class Main {
                     System.out.println("Switch statement is an ENUM");
                 }
 
-                if(mPojo.isHasTempVar()==true){
-                    System.out.println("This method has a temporary variable");
-                }
+//                if(mPojo.isHasTempVar()==true){
+//                    System.out.println("This method has a temporary variable");
+//                }
+//
+//                if(mPojo.isGlobalVariable()==true){
+//                    System.out.println("This method uses a global variable");
+//                }
+
+
 
                 System.out.println("\n");
 

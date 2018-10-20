@@ -9,8 +9,10 @@ import com.github.javaparser.ast.comments.Comment;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.Statement;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class MethodPOJO {
 
@@ -22,6 +24,25 @@ public class MethodPOJO {
     private boolean switchStmt;
     private boolean hasTempVar;
     private boolean switchEnum;
+    private Set<String> tempField;
+
+    public Set<String> getTempField() {
+        return tempField;
+    }
+
+    public void setTempField(Set<String> tempField) {
+        this.tempField = tempField;
+    }
+
+    public boolean isGlobalVariable() {
+        return globalVariable;
+    }
+
+    public void setGlobalVariable(boolean globalVariable) {
+        this.globalVariable = globalVariable;
+    }
+
+    private boolean globalVariable;
 
     public boolean isSwitchEnum() {
         return switchEnum;
