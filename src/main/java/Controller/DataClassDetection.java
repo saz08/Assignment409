@@ -21,11 +21,7 @@ public class DataClassDetection {
             if(methodInfo.getStatements().size()==1){
                 for(Statement s : methodInfo.getStatements()){
                     if(s.isReturnStmt()){
-                      //  for(FieldDeclaration f : classInfo.getFieldDeclarations()){
-                        //    if(returnStmt.contains(f.getVariables().get(0).getNameAsString())){
                                 getters.add(methodInfo);
-                          //  }
-                        //}
                     }
                 }
             }
@@ -40,15 +36,6 @@ public class DataClassDetection {
         if(getters.size() + setters.size() == classInfo.getMethods().size()){
             classInfo.setDataClass(true);
         }
-
-
-            //statement size one
-        //look and if it is a return and also return name needs to match a field
-        //for each field, if it matches the return name, must be a getter and add to getter list
-        //setter statement size one, and not in the getter list
-        //get statement, target is field, value is parameter passed in. value match parameter, target match field
-        // add to setter list
-        //if two sizes match the number of methods = data class
 
 
         return classInfo;

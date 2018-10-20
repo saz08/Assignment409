@@ -30,14 +30,12 @@ public class ClassInfo extends VoidVisitorAdapter<List<ClassPOJO>> {
     cPojo.setVariableDeclarators(md.findAll(VariableDeclarator.class));
     cPojo.setAllVariables(md.findAll(VariableDeclarator.class));
 
- //   cPojo.setVariableDeclarators();
 
 
+    cPojo = new LargeClassDetection().LargeClassDetection(cPojo);
     cPojo = new PrimitiveTypeDetection().PrimitiveDetection(cPojo);
     cPojo = new DataClassDetection().DataClassDetection(cPojo);
-  //  cPojo = new TemporaryFieldDetection().TemporaryFieldDetection(cPojo);
-  //  cPojo = new GlobalVariableDetection().GlobalVariableDetection(cPojo);
-    cPojo = new Temporary().Temporary(cPojo);
+    cPojo = new TemporaryFieldDetection().Temporary(cPojo);
 
     list.add(cPojo);
 

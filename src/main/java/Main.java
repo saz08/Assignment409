@@ -1,26 +1,46 @@
 import Collector.ClassInfo;
-import Controller.Temporary;
 import POJOs.ClassPOJO;
 import POJOs.MethodPOJO;
 import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.symbolsolver.JavaSymbolSolver;
+import com.github.javaparser.symbolsolver.model.resolution.TypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.ReflectionTypeSolver;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-  //  private static final String FILE_PATH = "/Users/User/Documents/Uni/4-Fourth Year/CS409/Assignment409/ReversePolish.java";
-    private static final String FILE_PATH = "/Users/User/Documents/Uni/4-Fourth Year/CS409/Assignment409/BarnsleyFernTwo.java";
 
-    // private static final String FILE_PATH = "/Users/User/Documents/Uni/4-Fourth Year/CS409/Assignment409/ExamplePojo.java";
-
+    private static final String FILE_PATH = "ImportedTests";
 
     public static void main(String[] args) throws Exception{
-        CompilationUnit cu = JavaParser.parse(new File(FILE_PATH));
+
+        List<File> files = new ArrayList<>();
+        importFiles(FILE_PATH,files);
 
         List<ClassPOJO> classes = new ArrayList<>();
-        new ClassInfo().visit(cu,classes);
+
+        TypeSolver javaParserTS = new JavaParserTypeSolver(new File("ImportedTests"));
+        TypeSolver reflectionTS = new ReflectionTypeSolver();
+        reflectionTS.setParent(reflectionTS);
+        CombinedTypeSolver combinationSolver = new CombinedTypeSolver();
+        combinationSolver.add(javaParserTS);
+        combinationSolver.add(reflectionTS);
+        JavaSymbolSolver symbolSolver = new JavaSymbolSolver(combinationSolver);
+        ParserConfiguration parserConfiguration = new JavaParser().getStaticConfiguration().setSymbolResolver(symbolSolver);
+
+
+
+        for(File f: files){
+            CompilationUnit cu = JavaParser.parse(f);
+            new ClassInfo().visit(cu,classes);
+        }
+
 
         for(ClassPOJO info : classes){
             System.out.println("Name : " + info.getClassName());
@@ -31,20 +51,16 @@ public class Main {
             if(info.isDataClass()==true){
                 System.out.println("This is a data class");
             }
-//            if(info.isHasTempField()==true){
-//                System.out.println("This class has temporary fields");
-//                System.out.println("Temporary fields are : " );
-//            }
+
             if(info.getTempField().size()>0){
                 System.out.println("This class has temporary fields of : " + info.getTempField());
             }
 
             if(info.getAllVariables().size()>0) {
                 if ((info.getVariableDeclarators().size()) / (info.getAllVariables().size()) > 0.6) {
-                    System.out.println("CLASS PRIM OBSESSION");
+                    System.out.println("This class has Primitive Obsession");
                 }
             }
-            System.out.println("Primitive types in this class are : " + info.getVariableDeclarators()+"\n") ;
 
 
             for(MethodPOJO mPojo : info.getMethods()){
@@ -58,9 +74,6 @@ public class Main {
                     System.out.println("The parameter list for this method is too long");
                 }
 
-//                if(mPojo.getParameters().size()>0){
-//                    System.out.println("This method has primitive types as parameters : " + mPojo.getParameters());
-//                }
 
                 if(mPojo.getAllParams().size()>0) {
                     if ((mPojo.getParameters().size()) / (mPojo.getAllParams().size()) > 0.6) {
@@ -68,9 +81,6 @@ public class Main {
                     }
                 }
 
-//                if(mPojo.getMethodVariable().size()>0){
-//                    System.out.println("This method has primitive types : " + mPojo.getMethodVariable());
-//                }
 
                 if(mPojo.getAllMethodVars().size()>0) {
                     if ((mPojo.getMethodVariable().size()) / (mPojo.getAllMethodVars().size()) > 0.6) {
@@ -84,29 +94,34 @@ public class Main {
                 }
 
                 if(mPojo.isSwitchEnum()==true){
-                    System.out.println("Switch statement is an ENUM");
+                    System.out.println("Switch statement type is an ENUM");
                 }
-
-//                if(mPojo.isHasTempVar()==true){
-//                    System.out.println("This method has a temporary variable");
-//                }
-//
-//                if(mPojo.isGlobalVariable()==true){
-//                    System.out.println("This method uses a global variable");
-//                }
-
-
 
                 System.out.println("\n");
 
             }
-
-
-
-
-
-
         }
 
+    }
+
+    public static List<File> importFiles(String filePath, List<File> files){
+        File fRoot = new File(filePath);
+        File[] fileList = fRoot.listFiles();
+
+        if(fileList == null){
+            return files;
+        }
+
+        for(File f: fileList){
+            if(f.isDirectory()){
+                importFiles(f.getPath(),files);
+            }
+            else{
+                if(f.getPath().contains(".java")){
+                    files.add(f);
+                }
+            }
+        }
+        return files;
     }
 }

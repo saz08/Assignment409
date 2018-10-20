@@ -22,70 +22,13 @@ public class MethodPOJO {
     private boolean methodTooLong;
     private boolean paramTooLong;
     private boolean switchStmt;
-    private boolean hasTempVar;
     private boolean switchEnum;
-    private Set<String> tempField;
-
-    public Set<String> getTempField() {
-        return tempField;
-    }
-
-    public void setTempField(Set<String> tempField) {
-        this.tempField = tempField;
-    }
-
-    public boolean isGlobalVariable() {
-        return globalVariable;
-    }
-
-    public void setGlobalVariable(boolean globalVariable) {
-        this.globalVariable = globalVariable;
-    }
-
-    private boolean globalVariable;
-
-    public boolean isSwitchEnum() {
-        return switchEnum;
-    }
-
-    public void setSwitchEnum(boolean switchEnum) {
-        this.switchEnum = switchEnum;
-    }
-
-    public boolean isHasTempVar() {
-        return hasTempVar;
-    }
-
-    public void setHasTempVar(boolean hasTempVar) {
-        this.hasTempVar = hasTempVar;
-    }
-
+    private boolean tempVar;
     private List<Comment> comments;
     private List<Statement> statements;
-    private List<FieldDeclaration> methodField;
     private List<VariableDeclarator> methodVariable;
-
-    public List<Parameter> getAllParams() {
-        return allParams;
-    }
-
-    public void setAllParams(List<Parameter> allParams) {
-        this.allParams = allParams;
-    }
-
     private List<Parameter> allParams;
-
-    public List<VariableDeclarator> getAllMethodVars() {
-        return allMethodVars;
-    }
-
-    public void setAllMethodVars(List<VariableDeclarator> allMethodVars) {
-        this.allMethodVars = allMethodVars;
-    }
-
     private List<VariableDeclarator> allMethodVars;
-
-
 
     public String getMethodName() {
         return methodName;
@@ -94,9 +37,7 @@ public class MethodPOJO {
         this.methodName = methodName;
     }
 
-    public int getLength() {
-        return length;
-    }
+    public int getLength() { return length; }
     public void setLength(int length) {
         this.length = length;
     }
@@ -107,7 +48,6 @@ public class MethodPOJO {
     public void setParameters(List<Parameter> parameters) {
         this.parameters = parameters;
     }
-
 
     public boolean isMethodTooLong() {
         return methodTooLong;
@@ -126,16 +66,21 @@ public class MethodPOJO {
     public boolean isSwitchStmt() {
         return switchStmt;
     }
-
     public void setSwitchStmt(boolean switchStmt) {
         this.switchStmt = switchStmt;
     }
 
-
-    public List<Comment> getComments() {
-        return comments;
+    public boolean isSwitchEnum() {
+        return switchEnum;
+    }
+    public void setSwitchEnum(boolean switchEnum) {
+        this.switchEnum = switchEnum;
     }
 
+    public boolean isTempVar() { return tempVar; }
+    public void setTempVar(boolean tempVar) { this.tempVar = tempVar; }
+
+    public List<Comment> getComments() { return comments; }
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
@@ -143,27 +88,29 @@ public class MethodPOJO {
     public List<Statement> getStatements() {
         return statements;
     }
-
     public void setStatements(List<Statement> statements) {
         this.statements = statements;
-    }
-
-    public List<FieldDeclaration> getMethodField() {
-        return methodField;
-    }
-
-    public void setMethodField(List<FieldDeclaration> methodField) {
-        this.methodField = methodField;
     }
 
     public List<VariableDeclarator> getMethodVariable() {
         return methodVariable;
     }
-
     public void setMethodVariable(List<VariableDeclarator> methodVariable) {
         this.methodVariable = methodVariable;
     }
 
+    public List<Parameter> getAllParams() {
+        return allParams;
+    }
+    public void setAllParams(List<Parameter> allParams) {
+        this.allParams = allParams;
+    }
 
+    public List<VariableDeclarator> getAllMethodVars() {
+        return allMethodVars;
+    }
+    public void setAllMethodVars(List<VariableDeclarator> allMethodVars) {
+        this.allMethodVars = allMethodVars;
+    }
 
 }

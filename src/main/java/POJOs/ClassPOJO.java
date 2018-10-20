@@ -12,66 +12,17 @@ public class ClassPOJO {
 
     private String className;
     private int length;
-    private boolean classTooLong;
-    private boolean paramTooLong;
-    private boolean switchStatements;
-    private boolean dataClass;
-    private boolean hasTempField;
+    private boolean classTooLong, dataClass;
     private List<FieldDeclaration> fieldDeclarations;
     private List<VariableDeclarator> variableDeclarators;
-   private Set<String> tempField;
-
-    public Set<String> getTempField() {
-        return tempField;
-    }
-
-    public void setTempField(Set<String> tempField) {
-        this.tempField = tempField;
-    }
-
-    public List<VariableDeclarator> getAllVariables() {
-        return allVariables;
-    }
-
-    public void setAllVariables(List<VariableDeclarator> allVariables) {
-        this.allVariables = allVariables;
-    }
-
+    private Set<String> tempField;
     private List<VariableDeclarator> allVariables;
     private List<MethodPOJO> methods;
-    private List<Statement> getterSetter;
-
-
-
-    public List<VariableDeclarator> getVariableDeclarators() {
-        return variableDeclarators;
-    }
-
-    public void setVariableDeclarators(List<VariableDeclarator> variableDeclarators) {
-        this.variableDeclarators = variableDeclarators;
-    }
-
-    public List<FieldDeclaration> getFieldDeclarations() {
-        return fieldDeclarations;
-    }
-
-    public void setFieldDeclarations(List<FieldDeclaration> fieldDeclarations) {
-        this.fieldDeclarations = fieldDeclarations;
-    }
-
-    public List<MethodPOJO> getMethods() {
-        return methods;
-    }
-
-    public void setMethods(List<MethodPOJO> methods) {
-        this.methods = methods;
-    }
 
 
     public String getClassName() {
         return className;
     }
-
     public void setClassName(String className) {
         this.className = className;
     }
@@ -79,7 +30,6 @@ public class ClassPOJO {
     public int getLength() {
         return length;
     }
-
     public void setLength(int length) {
         this.length = length;
     }
@@ -87,52 +37,44 @@ public class ClassPOJO {
     public boolean isClassTooLong() {
         return classTooLong;
     }
-
     public void setClassTooLong(boolean classTooLong) {
         this.classTooLong = classTooLong;
     }
 
-    public boolean isParamTooLong() {
-        return paramTooLong;
-    }
-
-    public void setParamTooLong(boolean paramTooLong) {
-        this.paramTooLong = paramTooLong;
-    }
-
-    public boolean isSwitchStatements() {
-        return switchStatements;
-    }
-
-    public void setSwitchStatements(boolean switchStatements) {
-        this.switchStatements = switchStatements;
-    }
-
-    public List<Statement> getGetterSetter() {
-        return getterSetter;
-    }
-
-    public void setGetterSetter(List<Statement> getterSetter) {
-        this.getterSetter = getterSetter;
-    }
-
-
     public boolean isDataClass() {
         return dataClass;
     }
-
     public void setDataClass(boolean dataClass) {
         this.dataClass = dataClass;
     }
 
-    public boolean isHasTempField() {
-        return hasTempField;
+    public List<FieldDeclaration> getFieldDeclarations() {
+        return fieldDeclarations;
+    }
+    public void setFieldDeclarations(List<FieldDeclaration> fieldDeclarations) { this.fieldDeclarations = fieldDeclarations; }
+
+    public List<VariableDeclarator> getVariableDeclarators() {
+        return variableDeclarators;
+    }
+    public void setVariableDeclarators(List<VariableDeclarator> variableDeclarators) { this.variableDeclarators = variableDeclarators; }
+
+    public Set<String> getTempField() {
+        return tempField;
+    }
+    public void setTempField(Set<String> tempField) { this.tempField = tempField; }
+
+    public List<VariableDeclarator> getAllVariables() {
+        return allVariables;
+    }
+    public void setAllVariables(List<VariableDeclarator> allVariables) {
+        this.allVariables = allVariables;
     }
 
-    public void setHasTempField(boolean hasTempField) {
-        this.hasTempField = hasTempField;
+    public List<MethodPOJO> getMethods() {
+        return methods;
     }
-
-
+    public void setMethods(List<MethodPOJO> methods) {
+        this.methods = methods;
+    }
 
 }

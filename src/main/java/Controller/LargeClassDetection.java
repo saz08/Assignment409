@@ -4,10 +4,6 @@ import POJOs.ClassPOJO;
 
 public class LargeClassDetection {
 
-    public LargeClassDetection(){
-
-    }
-
     public ClassPOJO LargeClassDetection(ClassPOJO info){
         if(info.getLength()>100){
             info.setClassTooLong(true);
