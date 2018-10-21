@@ -52,6 +52,10 @@ public class Main {
                 System.out.println("This is a data class");
             }
 
+            if(info.isLazyClass()==true){
+                System.out.println("This is a lazy class");
+            }
+
             if(info.getTempField().size()>0){
                 System.out.println("This class has temporary fields of : " + info.getTempField());
             }

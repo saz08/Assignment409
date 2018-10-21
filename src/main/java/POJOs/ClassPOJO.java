@@ -2,6 +2,7 @@ package POJOs;
 
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.Statement;
 
 import java.util.HashSet;
@@ -18,6 +19,9 @@ public class ClassPOJO {
     private Set<String> tempField;
     private List<VariableDeclarator> allVariables;
     private List<MethodPOJO> methods;
+    private List<BlockStmt> blockStmts;
+    private boolean lazyClass;
+    private List<Statement> statements;
 
 
     public String getClassName() {
@@ -76,5 +80,14 @@ public class ClassPOJO {
     public void setMethods(List<MethodPOJO> methods) {
         this.methods = methods;
     }
+
+    public List<BlockStmt> getBlockStmts() { return blockStmts; }
+    public void setBlockStmts(List<BlockStmt> blockStmts) { this.blockStmts = blockStmts; }
+
+    public boolean isLazyClass() { return lazyClass; }
+    public void setLazyClass(boolean lazyClass) { this.lazyClass = lazyClass; }
+
+    public List<Statement> getStatements() { return statements; }
+    public void setStatements(List<Statement> statements) { this.statements = statements; }
 
 }
